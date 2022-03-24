@@ -10,5 +10,4 @@ router.post('/reguser',(req,res)=>{
 router.post('/login',(req,res)=>{
     res.send('login OK')
 })
-
 module.exports=router
