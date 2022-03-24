@@ -23,6 +23,19 @@ exports.regUser=(req,res)=>{
         }
         //调用方法对密码进行加密
         userinfo.password = bcrypt.hashSync(userinfo.password,10);
+        // 定义插入新用户sql语句
+        const sql = `insert into ev_users set ?`
+        //调用db.query
+        db.query(sql,{username:userinfo.username,password:userinfo.password},(err,result)=>{
+            if(err){
+                return res.send({status:1,message:err.message})
+            }
+            //判断影响行数是否唯一
+            if(result.affectedRows!=1){
+                res.send({status:1,message:'注册文本失败，请稍后再试'});
+            }
+            res.send({status:0,message:'注册成功！'});
+        }) 
     })
 
 }
