@@ -1,3 +1,5 @@
+//导入bcryptjs包
+const bcrypt = require('bcryptjs');
 //导入数据库操作模块
 const db = require('../db/index');
 //注册新用户处理函数
@@ -19,9 +21,11 @@ exports.regUser=(req,res)=>{
         if(result.length>0){
             return res.send({status:1,message:'用户名被占用，请更换其他用户名'});
         }
+        //调用方法对密码进行加密
+        userinfo.password = bcrypt.hashSync(userinfo.password,10);
     })
-}
 
+}
 //注册登录处理函数
 exports.login=(req,res)=>{
     res.send('login ok');
