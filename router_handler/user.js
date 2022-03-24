@@ -19,7 +19,8 @@ exports.regUser=(req,res)=>{
         }
         //判断用户名是否被占用
         if(result.length>0){
-            return res.send({status:1,message:'用户名被占用，请更换其他用户名'});
+             res.send({status:1,message:'用户名被占用，请更换其他用户名'});
+             return;
         }
         //调用方法对密码进行加密
         userinfo.password = bcrypt.hashSync(userinfo.password,10);
@@ -37,7 +38,6 @@ exports.regUser=(req,res)=>{
             res.send({status:0,message:'注册成功！'});
         }) 
     })
-
 }
 //注册登录处理函数
 exports.login=(req,res)=>{
