@@ -1,5 +1,6 @@
-//导入express
+//导入包
 const express = require('express');
+const Joi = require('@hapi/joi');
 //创建服务器对象
 const app = express();
 //导入并配置cors中间件
@@ -22,6 +23,14 @@ app.use((req,res,next)=>{
 //导入路由模块
 const userRouter = require('./router/user');
 app.use('/api',userRouter);
+//定义错误级别的中间件
+app.use((err,req,res,next)=>{
+    if(err instanceof Joi.ValidationError){
+        //未知的错误
+        res.cc(err)
+    }
+    res.cc(err);
+})
 //启动服务器
 app.listen(3007,()=>{
     console.log('api server running at http://127.0.0.1:3007')

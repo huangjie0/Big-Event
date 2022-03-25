@@ -7,9 +7,9 @@ exports.regUser=(req,res)=>{
     //获取客户端提交服务器信息
     const userinfo = req.body;
     //对表单数据进行合法校验
-    if(!userinfo.username||!userinfo.password){
-        return res.send({status:1,message:'用户名或者密码不合法'})
-    }
+    // if(!userinfo.username||!userinfo.password){
+    //     return res.send({status:1,message:'用户名或者密码不合法'})
+    // }
     //定义sql语句
     const sql = `select * from ev_users where username=?`
     db.query(sql,userinfo.username,(err,result)=>{
