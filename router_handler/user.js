@@ -46,6 +46,15 @@ exports.regUser=(req,res)=>{
 }
 //注册登录处理函数
 exports.login=(req,res)=>{
-    //接受表单数据
-    res.send('login ok');
+    const userinfo = req.body;
+    const sql = `select * from ev_users where username=? `
+    db.query(sql,userinfo.username,(err,result)=>{
+        //执行失败语句
+        if(err) return res.cc(err);
+        //执行sql语句成功,但是获取数据条数不等于1
+        if(result.length!=1) return res.res.cc('登录失败');
+        //判断密码是否正确，接受表单数据
+        res.send('login ok');
+    })
+  
 }
