@@ -47,6 +47,5 @@ exports.regUser=(req,res)=>{
 //注册登录处理函数
 exports.login=(req,res)=>{
     //接受表单数据
-    
     res.send('login ok');
 }
