@@ -1,6 +1,6 @@
 //导入包
 const express = require('express');
-const Joi = require('@hapi/joi');
+const Joi = require('joi');
 //创建服务器对象
 const app = express();
 //导入并配置cors中间件

@@ -56,5 +56,4 @@ exports.login=(req,res)=>{
         //判断密码是否正确，接受表单数据
         res.send('login ok');
     })
-  
 }
